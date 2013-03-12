@@ -4,6 +4,7 @@
   "dependencies": {
     "expresso":"*",
     "deferred":"*",
-    "underscore":"*"
+    "underscore":"*",
+    "node-uuid":"*"
   }
 }

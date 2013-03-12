@@ -1,5 +1,5 @@
-var chainFactory = require("..")
-  , dorm = require('dorm')
+var chainFactory = require("dorm-chains")
+  , dorm = require('dorm').config(__dirname+'/config.json')
   , Entity = dorm.Entity
   , F = dorm.Fields
   , Deferred = require('deferred')
@@ -73,9 +73,15 @@ module.exports["chain dorm functionality tests"] = function(beforeExit, assert) 
 
 	//chain.func(function(wins, vals) {
 		chain.get(TestTable__124, primaryKey, function(wins, vals) {
-			assert.ok(true);
-			console.log('2nd Get Successful: ', wins[0].values.id, ' - ', wins[0].values.value);
-			deferred.resolve();
+			if (wins[0].values.value === 888) {
+				assert.ok(true);
+				console.log('2nd Get Successful: ', wins[0].values.id, ' - ', wins[0].values.value);
+				deferred.resolve();
+			} else {
+				console.log('Update Failed: \'value\' property was expected to be 888, but was ' + wins[0].values.value + ' instead.');
+				assert.ok(false);
+				deferred.reject();
+			}
 		}, function(fail) { 
 			console.log('2nd Get Failed', fail);
 			assert.ok(false); 
