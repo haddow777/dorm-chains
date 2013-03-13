@@ -1,0 +1,10 @@
+{
+    "db": { 
+        "connectionString": "postgres://user_dev:dev@localhost:5432/ebt_dev"
+    },
+    "showSql":true,
+    "showLineNumbers":true,
+    "debugOutput" : true,
+    "useRowToJson": false,
+    "dialect":"postgresql"
+}
