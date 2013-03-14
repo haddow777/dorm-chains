@@ -11,8 +11,19 @@ module.exports["loop test"] = function(beforeExit, assert) {
 	chain.endLoop();
 	chain.func(function(win, vals) {assert.ok(vals.count === undefined);});
 	assert.ok(typeof chain.end().then === 'function');
+
+	var self = this;
+
+	chain.end(function() {
+		self.on('exit', function() {
+			assert.ok(true);
+		});
+	});
 };
 
 module.exports["test test"] = function(beforeExit, assert) {
 	assert.ok(true);
+	this.on('exit', function() {
+		assert.ok(true);
+	});
 };

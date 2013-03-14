@@ -9,6 +9,9 @@ func_types.forEach(function(item, index) {
 		chain.func(function() {return true});
 		chain.end();
 		assert.ok(typeof chain[item] === 'function');
+		this.on('exit', function() {
+			assert.ok(true);
+		});
 	};
 });
 

@@ -182,9 +182,13 @@ module.exports["chain dorm functionality tests"] = function(beforeExit, assert) 
 	}, function(fail) { assert.ok(false); });
 
 
+	var self = this;
 
+	chain.end(function() {
+		self.on('exit', function() {
+			assert.ok(true);
+		});
+	});
 
-	var promise = chain.end();
-
-	assert.ok(typeof promise.then === 'function');
+	
 };

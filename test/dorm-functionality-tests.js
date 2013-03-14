@@ -82,7 +82,11 @@ module.exports["chain dorm functionality tests"] = function(beforeExit, assert) 
 	
 
 
-	var promise = chain.end();
+	var self = this;
 
-	assert.ok(typeof promise.then === 'function');
+	chain.end(function() {
+		self.on('exit', function() {
+			assert.ok(true);
+		});
+	});
 };
