@@ -1,5 +1,5 @@
 var chainFactory = require("..")
-  , dorm = require('dorm')
+  , dorm = require('dorm').config(__dirname + '/config.json')
   , Entity = dorm.Entity
   , util = require('util')
   , F = dorm.Fields;
@@ -88,5 +88,6 @@ module.exports["chain dorm functionality tests"] = function(beforeExit, assert) 
 		self.on('exit', function() {
 			assert.ok(true);
 		});
+		dorm.end();
 	});
 };
